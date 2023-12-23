@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Birthday countdown</title>
+  <style type="text/css" media="all">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: 0.5s;
+      font-family: cursive;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(white, skyblue, blue);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #birthdayBox {
+      padding: 2rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+      text-shadow: 0 0 2px black;
+      border-radius: 1rem;
+      overflow: hidden;
+
+    }
+
+    #birthdayBox:active {
+      transform: scale(0.95);
+    }
+
+    #music {
+      display: none;
+    }
+
+
+    .timeBox {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem;
+      padding: 1rem;
+
+    }
+
+    .time {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .ballon,
+    .blueHeart,
+    .whiteHeart {
+      position: absolute;
+      top: 105vh;
+      animation: blew ease-in-out;
+
+    }
+
+    @keyframes blew {
+
+      100% {
+        transform: translateY(-111vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="birthdayBox">
+    <h1>🎂 Happy birthday 🥳</h1>
+   <!--
+    <audio id="music" src="/Music/tera yaar hoon main.mp3" controls></audio>
+    -->
+    <div class="timeBox">
+      <div class="time">
+        <h3 class="text" id="day">a</h3>
+        <h4> Day</h4>
+      </div>
+      <div class="time">
+        <h3 class="text" id="hour">a</h3>
+        <h4> hour</h4>
+      </div>
+      <div class="time">
+        <h3 class="text" id="min">a</h3>
+        <h4>min </h4>
+      </div>
+      <div class="time">
+        <h3 class="text" id="sec">a</h3>
+        <h4> sec</h4>
+      </div>
+    </div>
+  </div>
+  <script>
+    //made on 8th October 2021
+
+    let currentYear = Number(new Date().getFullYear()) + 1
+    
+    let birtdayDate = "19 January "+ currentYear;
+
+    let days = document.getElementById('day');
+    let hour = document.getElementById('hour');
+    let min = document.getElementById('min');
+    let sec = document.getElementById('sec');
+
+    function birthdayCountdown() {
+
+      let thatDay = new Date(birtdayDate);
+      let today = new Date();
+      let totalSec = (thatDay - today) / 1000;
+      let getDay = totalSec / 3600 / 24;
+      let getHour = (totalSec / 3600) % 24;
+      let getMin = (totalSec / 60) % 60;
+      let getSec = totalSec % 60;
+
+      days.innerText = Math.floor(
+        getDay);
+      hour.innerText = Math.floor(getHour);
+      min.innerText = Math.floor(getMin);
+      sec.innerText = Math
+        .floor(getSec);
+
+      if (getSec < 10) {
+        sec.innerText = `0${Math.floor(getSec)}`
+      }
+
+      if (getMin < 10) {
+        min.innerText = `0${Math.floor(getMin)}`
+      }
+
+      if (getHour < 10) {
+        hour.innerText = `0${Math.floor(getHour)}`
+      }
+    };
+
+
+    setInterval(birthdayCountdown, 1000)
+
+    //music 
+/*
+
+    let music = document.getElementById('music');
+
+    let musicBox = document.getElementById('birthdayBox');
+
+    musicBox.addEventListener('click', () => {
+      music.play()
+    })
+
+
+    musicBox.addEventListener('dblclick', () => {
+      music.pause()
+    })
+*/
+    function celebration() {
+
+      let balloon = document.createElement('div')
+      let blueHeart = document.createElement('div')
+      let whiteHeart = document.createElement('div')
+
+      balloon.innerText = '🎈'
+      blueHeart.innerText = '💙'
+      whiteHeart.innerText = '🤍'
+      balloon.classList.add('ballon')
+      blueHeart.classList.add('blueHeart')
+      whiteHeart.classList.add('whiteHeart')
+
+      balloon.style.left = `${Math.random()*100}vw`
+      balloon.style.animationDuration = `${4+Math.random()*16}s`
+      balloon.style.fontSize = `${10+Math.random()*35}px`
+
+
+      whiteHeart.style.left = `${3+Math.random()*100}vw`
+      whiteHeart.style.animationDuration = `${4+Math.random()*12}s`
+      whiteHeart.style.fontSize = `${10+Math.random()*25}px`
+
+
+      blueHeart.style.left = `${6+Math.random()*100}vw`
+      blueHeart.style.animationDuration = `${4+Math.random()*15}s`
+      blueHeart.style.fontSize = `${10+Math.random()*25}px`
+
+
+      document.body.appendChild(balloon)
+      document.body.appendChild(blueHeart)
+      document.body.appendChild(whiteHeart)
+    }
+
+    let randomSec = Math.floor(Math.random() * 5000)
+
+    setInterval(celebration, 350)
+
+    clearTimeout(celebration, 1000)
+  </script>
+</body>
+
+</html>
