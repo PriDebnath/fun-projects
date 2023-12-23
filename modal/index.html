@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Author" content="Pritam Debnath" <meta name="linkedin profile" content="https://www.linkedin.com/in/pritam-debnath-762019239">
+
+
+
+  <title>Modal</title>
+  <style type="text/css" media="all">
+    * {}
+
+    header {
+      background: url(".././img/awesome.png") center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .banner {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border: 2px solid rgba(0, 0, 0, 0.7);
+
+    }
+
+    button {
+      margin: auto;
+      width: 50%;
+      border-radius: 0.5rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 0.6rem 1rem;
+      margin: 1rem;
+      outline: none;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: black;
+    }
+
+    .modal_overlay {
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 200, 0.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+    }
+
+    .open_modal {
+      visibility: visible;
+      z-index: 3;
+    }
+
+    .modal_container {
+      background: deepskyblue;
+      padding: 1rem;
+      border-radius: 1rem;
+      display: flex;
+      position: relative;
+      border: 2px solid rgba(0, 0, 0, 0.7);
+    }
+
+    .closeBtn {
+      background: inherit;
+      position: absolute;
+      padding: 0;
+      right: 1rem;
+      top: 1rem;
+      color: red;
+      margin: 0;
+      width: auto;
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <header>
+    <div class="banner">
+      <h2>The main content</h2>
+      <button class="openBtn" type="submit">Open modal</button>
+    </div>
+  </header>
+
+
+  <div class="modal_overlay">
+    <div class="modal_container">
+      <h2>Modal content
+      </h2>
+      <button class="closeBtn" type="submit"> &times;</button>
+    </div>
+  </div>
+
+
+  <script>
+    let openBtn = document.querySelector('.openBtn')
+    let closeBtn = document.querySelector('.closeBtn')
+    let modal_overlay = document.querySelector('.modal_overlay')
+
+    console.log(openBtn)
+
+    openBtn.addEventListener('click', () => {
+      modal_overlay.classList.add('open_modal')
+    })
+    closeBtn.addEventListener('click', () => {
+      modal_overlay.classList.remove('open_modal')
+    })
+  </script>
+</body>
+
+</html>
